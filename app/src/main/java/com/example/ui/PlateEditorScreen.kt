@@ -181,7 +181,7 @@ fun PlateEditorScreen(
     val showSavedPlates by viewModel.showSavedPlates.collectAsStateWithLifecycle()
     val userMessage by viewModel.userMessage.collectAsStateWithLifecycle()
 
-    var showPresetMenu by remember { mutableStateOf(false) }
+
 
     LaunchedEffect(userMessage) {
         userMessage?.let { msg ->
@@ -242,51 +242,18 @@ fun PlateEditorScreen(
                                 }
                             },
                             actions = {
-                                // Presets Action
+                                // Print Preview Icon
                                 IconButton(
-                                    onClick = { showPresetMenu = true },
-                                    modifier = Modifier.testTag("presets_menu_button")
+                                    onClick = { viewModel.openPrintPreview() },
+                                    modifier = Modifier.testTag("open_print_preview_button")
                                 ) {
                                     Icon(
-                                        imageVector = Icons.Default.FlashOn,
-                                        contentDescription = "Presets",
+                                        imageVector = Icons.Default.Print,
+                                        contentDescription = "Print & Export",
                                         tint = Color.White
                                     )
                                 }
-                                DropdownMenu(
-                                    expanded = showPresetMenu,
-                                    onDismissRequest = { showPresetMenu = false }
-                                ) {
-                                    DropdownMenuItem(
-                                        text = { Text("Bike Front (285×50 mm)") },
-                                        onClick = {
-                                            viewModel.loadQuickPreset("DHAKA_BIKE_FRONT")
-                                            showPresetMenu = false
-                                        }
-                                    )
-                                    DropdownMenuItem(
-                                        text = { Text("Bike Rear RFID (205×152 mm)") },
-                                        onClick = {
-                                            viewModel.loadQuickPreset("DHAKA_BIKE_REAR")
-                                            showPresetMenu = false
-                                        }
-                                    )
-                                    DropdownMenuItem(
-                                        text = { Text("Private Car (300×152 mm)") },
-                                        onClick = {
-                                            viewModel.loadQuickPreset("CAR_PRIVATE")
-                                            showPresetMenu = false
-                                        }
-                                    )
-                                    DropdownMenuItem(
-                                        text = { Text("Stealth Black Edition") },
-                                        onClick = {
-                                            viewModel.loadQuickPreset("CHATTOGRAM_STEALTH")
-                                            showPresetMenu = false
-                                        }
-                                    )
-                                }
-
+                                
                                 // Saved Library Icon
                                 IconButton(
                                     onClick = { viewModel.openSavedPlates() },
@@ -307,18 +274,6 @@ fun PlateEditorScreen(
                                             tint = Color.White
                                         )
                                     }
-                                }
-
-                                // Print Preview Icon
-                                IconButton(
-                                    onClick = { viewModel.openPrintPreview() },
-                                    modifier = Modifier.testTag("open_print_preview_button")
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Print,
-                                        contentDescription = "Print & Export",
-                                        tint = Color.White
-                                    )
                                 }
                             },
                             colors = TopAppBarDefaults.topAppBarColors(

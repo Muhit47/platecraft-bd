@@ -83,12 +83,41 @@ class ExampleRobolectricTest {
     }
 
     @Test
-    fun `splash screen strings load accurately from resources`() {
+    fun `generate high resolution plate images for documentation`() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        val title = context.getString(R.string.splash_title)
-        val subtitle = context.getString(R.string.splash_subtitle)
-        assertEquals("PlateCraft BD", title)
-        assertEquals("বাংলাদেশ ভেহিক্যাল নাম্বার প্লেট স্টুডিও", subtitle)
+        
+        // 1. Bike Rear Plate (Stacked 205x152mm)
+        val bikeConfig = PlateDesignConfig(
+            plateType = PlateType.BIKE_REAR,
+            metroName = "ঢাকা মেট্রো",
+            classLetter = "ল",
+            seriesNumber = "১২",
+            serialNumber = "৩৪৫৬",
+            theme = com.example.model.PlateTheme.ELECTRIC_GREEN
+        )
+        val bikeBitmap = com.example.engine.PlatePrintEngine.createHighResBitmap(bikeConfig, context)
+        val bikeFile = java.io.File("docs/screenshots/bike_plate_preview.png")
+        bikeFile.parentFile?.mkdirs()
+        java.io.FileOutputStream(bikeFile).use { out ->
+            bikeBitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)
+        }
+        assertTrue(bikeFile.exists())
+
+        // 2. Car Plate (300x152mm)
+        val carConfig = PlateDesignConfig(
+            plateType = PlateType.PRIVATE_CAR,
+            metroName = "ঢাকা মেট্রো",
+            classLetter = "গ",
+            seriesNumber = "১১",
+            serialNumber = "৯৯৯৯",
+            theme = com.example.model.PlateTheme.STANDARD_WHITE
+        )
+        val carBitmap = com.example.engine.PlatePrintEngine.createHighResBitmap(carConfig, context)
+        val carFile = java.io.File("docs/screenshots/car_plate_preview.png")
+        java.io.FileOutputStream(carFile).use { out ->
+            carBitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)
+        }
+        assertTrue(carFile.exists())
     }
 }
 

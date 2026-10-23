@@ -93,7 +93,7 @@ object PlatePrintEngine {
         val pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
         val page = document.startPage(pageInfo)
 
-        drawA4PrintPage(page.canvas, config, pageWidth.toFloat(), pageHeight.toFloat(), getBanglaTypeface(context))
+        drawA4PrintPage(page.canvas, config, pageWidth.toFloat(), pageHeight.toFloat(), getBanglaTypeface(context), context)
 
         document.finishPage(page)
 
@@ -115,7 +115,8 @@ object PlatePrintEngine {
         config: PlateDesignConfig,
         pageWidthPt: Float,
         pageHeightPt: Float,
-        customTypeface: Typeface? = null
+        customTypeface: Typeface? = null,
+        context: Context? = null
     ) {
         // Fill white background for A4 sheet
         canvas.drawColor(AndroidColor.WHITE)
@@ -167,7 +168,7 @@ object PlatePrintEngine {
         }
 
         // 3. Draw The Number Plate Itself with authentic Bengali font
-        drawPlateToCanvas(canvas, plateRect, config, isPrintMode = true, customTypeface = customTypeface)
+        drawPlateToCanvas(canvas, plateRect, config, isPrintMode = true, customTypeface = customTypeface, context = context)
 
         // 4. Dimension Calipers / Rulers
         drawDimensionLabels(canvas, plateRect, config, fitScale)
@@ -294,7 +295,8 @@ object PlatePrintEngine {
         rect: RectF,
         config: PlateDesignConfig,
         isPrintMode: Boolean = false,
-        customTypeface: Typeface? = null
+        customTypeface: Typeface? = null,
+        context: Context? = null
     ) {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         val cornerRadius = (rect.height() * 0.06f).coerceIn(4f, 16f)
@@ -379,7 +381,7 @@ object PlatePrintEngine {
 
         // 4. Bangladesh National Flag Circle Emblem & Hologram
         val contentLeftInset: Float = if (config.showEmblem) {
-            drawEmblemAndBadges(canvas, rect, config)
+            drawEmblemAndBadges(canvas, rect, config, context)
         } else {
             rect.left + (rect.width() * 0.05f)
         }
@@ -445,20 +447,34 @@ object PlatePrintEngine {
         }
     }
 
-    private fun drawEmblemAndBadges(canvas: Canvas, rect: RectF, config: PlateDesignConfig): Float {
+    private fun drawEmblemAndBadges(canvas: Canvas, rect: RectF, config: PlateDesignConfig, context: Context? = null): Float {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         val emblemRadius = (rect.height() * 0.16f).coerceIn(6f, 18f)
         val emblemCenterX = rect.left + (rect.width() * 0.05f) + emblemRadius
         val emblemCenterY = rect.centerY()
 
-        // Green circle
-        paint.style = Paint.Style.FILL
-        paint.color = AndroidColor.rgb(0, 106, 78) // Bangladesh Emerald Green
-        canvas.drawCircle(emblemCenterX, emblemCenterY, emblemRadius, paint)
-
-        // Red inner disc
-        paint.color = AndroidColor.rgb(244, 42, 65) // Bangladesh Crimson Red
-        canvas.drawCircle(emblemCenterX, emblemCenterY, emblemRadius * 0.55f, paint)
+        // Load BRTA emblem
+        val emblemBitmap = context?.resources?.let { res ->
+            android.graphics.BitmapFactory.decodeResource(res, com.example.R.drawable.ic_brta_logo)
+        }
+        val emblemSize = emblemRadius * 3.4f
+        val emblemRect = RectF(
+            emblemCenterX - emblemSize / 2f,
+            emblemCenterY - emblemSize / 2f,
+            emblemCenterX + emblemSize / 2f,
+            emblemCenterY + emblemSize / 2f
+        )
+        if (emblemBitmap != null) {
+            val filterPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+            canvas.drawBitmap(emblemBitmap, null, emblemRect, filterPaint)
+        } else {
+            // Fallback to old drawing if bitmap fails
+            paint.style = Paint.Style.FILL
+            paint.color = AndroidColor.rgb(0, 106, 78)
+            canvas.drawCircle(emblemCenterX, emblemCenterY, emblemRadius, paint)
+            paint.color = AndroidColor.rgb(244, 42, 65)
+            canvas.drawCircle(emblemCenterX, emblemCenterY, emblemRadius * 0.55f, paint)
+        }
 
         // Digital Hologram representation (if enabled)
         if (config.showHologram) {
@@ -481,7 +497,8 @@ object PlatePrintEngine {
                 paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
                 paint.textAlign = Paint.Align.CENTER
                 paint.color = AndroidColor.rgb(14, 165, 233)
-                canvas.drawText("BRTA", holoRect.centerX(), holoRect.centerY() + (holoHeight * 0.22f), paint)
+                // Generic hologram marker
+                canvas.drawRect(holoRect.left + 2f, holoRect.top + 2f, holoRect.right - 2f, holoRect.bottom - 2f, paint)
             }
         }
 
@@ -617,7 +634,7 @@ object PlatePrintEngine {
         val plateRect = RectF(0f, 0f, widthPx.toFloat(), heightPx.toFloat())
 
         val tf = context?.let { getBanglaTypeface(it) } ?: cachedBanglaTypeface
-        drawPlateToCanvas(canvas, plateRect, config, isPrintMode = false, customTypeface = tf)
+        drawPlateToCanvas(canvas, plateRect, config, isPrintMode = false, customTypeface = tf, context = context)
         return bitmap
     }
 
@@ -717,7 +734,7 @@ object PlatePrintEngine {
             putExtra(Intent.EXTRA_SUBJECT, "1:1 True Scale Bangladesh Vehicle Number Plate")
             putExtra(
                 Intent.EXTRA_TEXT,
-                "Print this PDF on standard A4 paper at 100% scale (no scaling) for exact physical BRTA dimensions."
+                "Print this PDF on standard A4 paper at 100% scale (no scaling) for exact physical dimensions."
             )
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
