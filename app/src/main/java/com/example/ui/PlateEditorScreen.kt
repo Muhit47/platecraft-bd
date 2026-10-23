@@ -117,7 +117,7 @@ fun CardSectionHead(
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        color = com.example.ui.theme.SelldiboGreenSoft,
+        color = com.example.ui.theme.PlateCraftGreenSoft,
         shape = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp)
     ) {
         Column(
@@ -131,7 +131,7 @@ fun CardSectionHead(
             ) {
                 Surface(
                     shape = CircleShape,
-                    color = com.example.ui.theme.SelldiboGreen,
+                    color = com.example.ui.theme.PlateCraftGreen,
                     modifier = Modifier.size(24.dp)
                 ) {
                     Box(contentAlignment = Alignment.Center) {
@@ -147,14 +147,14 @@ fun CardSectionHead(
                     text = title,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold,
-                    color = com.example.ui.theme.SelldiboGreenDark
+                    color = com.example.ui.theme.PlateCraftGreenDark
                 )
             }
             if (!subtitle.isNullOrBlank()) {
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodySmall,
-                    color = com.example.ui.theme.SelldiboMuted,
+                    color = com.example.ui.theme.PlateCraftMuted,
                     modifier = Modifier.padding(start = 34.dp, top = 2.dp)
                 )
             }
@@ -195,7 +195,7 @@ fun PlateEditorScreen(
         topBar = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Surface(
-                    color = com.example.ui.theme.SelldiboGreenDark,
+                    color = com.example.ui.theme.PlateCraftGreenDark,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Box(
@@ -227,7 +227,7 @@ fun PlateEditorScreen(
                                             modifier = Modifier
                                                 .size(16.dp)
                                                 .clip(CircleShape)
-                                                .background(com.example.ui.theme.SelldiboRed)
+                                                .background(com.example.ui.theme.PlateCraftRed)
                                         )
                                     }
                                     Spacer(modifier = Modifier.width(10.dp))
@@ -239,7 +239,7 @@ fun PlateEditorScreen(
                                             color = Color.White
                                         )
                                         Text(
-                                            text = "PlateCraft BD • SellDibo Standard",
+                                            text = "PlateCraft BD • BRTA Standard",
                                             style = MaterialTheme.typography.labelSmall,
                                             color = Color.White.copy(alpha = 0.85f)
                                         )
@@ -300,7 +300,7 @@ fun PlateEditorScreen(
                                     BadgedBox(
                                         badge = {
                                             if (savedPlates.isNotEmpty()) {
-                                                Badge(containerColor = com.example.ui.theme.SelldiboRed) {
+                                                Badge(containerColor = com.example.ui.theme.PlateCraftRed) {
                                                     Text("${savedPlates.size}")
                                                 }
                                             }
@@ -342,9 +342,9 @@ fun PlateEditorScreen(
                         .background(
                             Brush.horizontalGradient(
                                 colors = listOf(
-                                    com.example.ui.theme.SelldiboRed,
-                                    com.example.ui.theme.SelldiboRed,
-                                    com.example.ui.theme.SelldiboGold
+                                    com.example.ui.theme.PlateCraftRed,
+                                    com.example.ui.theme.PlateCraftRed,
+                                    com.example.ui.theme.PlateCraftGold
                                 )
                             )
                         )
@@ -377,10 +377,10 @@ fun PlateEditorScreen(
                         shape = RoundedCornerShape(14.dp),
                         border = androidx.compose.foundation.BorderStroke(
                             1.dp,
-                            com.example.ui.theme.SelldiboGreen
+                            com.example.ui.theme.PlateCraftGreen
                         ),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = com.example.ui.theme.SelldiboGreenDark
+                            contentColor = com.example.ui.theme.PlateCraftGreenDark
                         )
                     ) {
                         Icon(imageVector = Icons.Default.BookmarkAdd, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -396,7 +396,7 @@ fun PlateEditorScreen(
                             .testTag("bottom_print_button"),
                         shape = RoundedCornerShape(14.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = com.example.ui.theme.SelldiboGreen,
+                            containerColor = com.example.ui.theme.PlateCraftGreen,
                             contentColor = Color.White
                         )
                     ) {
@@ -531,7 +531,7 @@ fun PlateEditorScreen(
                     .testTag("registration_card"),
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.SelldiboLine),
+                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.PlateCraftLine),
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ) {
                 CardSectionHead(
@@ -842,7 +842,7 @@ fun PlateEditorScreen(
                     .testTag("badges_card"),
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.SelldiboLine),
+                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.PlateCraftLine),
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ) {
                 CardSectionHead(
@@ -942,7 +942,7 @@ fun PlateEditorScreen(
                     .testTag("mount_card"),
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.SelldiboLine),
+                border = androidx.compose.foundation.BorderStroke(1.dp, com.example.ui.theme.PlateCraftLine),
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ) {
                 CardSectionHead(

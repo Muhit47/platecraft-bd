@@ -5,34 +5,34 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// Light Color Scheme matching https://numberplate.selldibo.com/
-val SelldiboLightColorScheme = lightColorScheme(
-    primary = SelldiboGreen,
+// Light Color Scheme matching official Bangladesh plate palette
+val PlateCraftLightColorScheme = lightColorScheme(
+    primary = PlateCraftGreen,
     onPrimary = Color.White,
-    primaryContainer = SelldiboGreenSoft,
-    onPrimaryContainer = SelldiboGreenDark,
-    secondary = SelldiboGreenDark,
+    primaryContainer = PlateCraftGreenSoft,
+    onPrimaryContainer = PlateCraftGreenDark,
+    secondary = PlateCraftGreenDark,
     onSecondary = Color.White,
-    secondaryContainer = SelldiboGreenSoft,
-    onSecondaryContainer = SelldiboGreenDark,
-    tertiary = SelldiboRed,
+    secondaryContainer = PlateCraftGreenSoft,
+    onSecondaryContainer = PlateCraftGreenDark,
+    tertiary = PlateCraftRed,
     onTertiary = Color.White,
-    tertiaryContainer = SelldiboRedSoft,
+    tertiaryContainer = PlateCraftRedSoft,
     onTertiaryContainer = Color(0xFF991B1B),
-    background = SelldiboBg,
-    onBackground = SelldiboInk,
-    surface = SelldiboSurface,
-    onSurface = SelldiboInk,
-    surfaceVariant = SelldiboBgAlt,
-    onSurfaceVariant = SelldiboMuted,
-    outline = SelldiboLine,
-    outlineVariant = SelldiboInputLine
+    background = PlateCraftBg,
+    onBackground = PlateCraftInk,
+    surface = PlateCraftSurface,
+    onSurface = PlateCraftInk,
+    surfaceVariant = PlateCraftBgAlt,
+    onSurfaceVariant = PlateCraftMuted,
+    outline = PlateCraftLine,
+    outlineVariant = PlateCraftInputLine
 )
 
 /**
  * PlateCraft Theme: Strict Light Theme only per explicit user requirement.
- * Faithful to SellDibo Number Plate Studio (Bangladesh Deep Green #006A4E,
- * Soft Sage #E8F3EF, Crisp #FFFFFF Cards, and #1D2B26 Ink).
+ * BRTA vehicle plate design studio (Bangladesh Deep Green #006A4E,
+ * Soft Mint #E8F3EF, Crisp #FFFFFF Cards, and #1D2B26 Ink).
  */
 @Composable
 fun PlateCraftTheme(
@@ -41,7 +41,7 @@ fun PlateCraftTheme(
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
-        colorScheme = SelldiboLightColorScheme,
+        colorScheme = PlateCraftLightColorScheme,
         typography = AppTypography,
         content = content
     )

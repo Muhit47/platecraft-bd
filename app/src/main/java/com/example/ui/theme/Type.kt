@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.R
 
-// SellDibo UI Typography: 'Hind Siliguri'
+// Primary UI Typography: 'Hind Siliguri'
 val HindSiliguriFontFamily = FontFamily(
     Font(R.font.hind_siliguri, FontWeight.Normal),
     Font(R.font.hind_siliguri, FontWeight.Medium),
@@ -16,7 +16,7 @@ val HindSiliguriFontFamily = FontFamily(
     Font(R.font.hind_siliguri, FontWeight.Bold)
 )
 
-// SellDibo Number Plate Authentic Bengali Typography: 'Kalpurush'
+// Authentic Bengali Number Plate Typography: 'Kalpurush'
 val KalpurushFontFamily = FontFamily(
     Font(R.font.kalpurush, FontWeight.Normal)
 )

@@ -151,14 +151,14 @@ fun PlateCanvasCard(
                     .background(
                         Brush.linearGradient(
                             colors = listOf(
-                                com.example.ui.theme.SelldiboStageStart,
-                                com.example.ui.theme.SelldiboStageEnd
+                                com.example.ui.theme.PlateCraftStageStart,
+                                com.example.ui.theme.PlateCraftStageEnd
                             )
                         )
                     )
                     .border(
                         1.dp,
-                        com.example.ui.theme.SelldiboLine,
+                        com.example.ui.theme.PlateCraftLine,
                         RoundedCornerShape(18.dp)
                     )
                     .padding(horizontal = 16.dp, vertical = 24.dp),
