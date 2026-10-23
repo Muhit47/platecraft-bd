@@ -1,0 +1,6 @@
+{
+  "name": "PlateCraft BD",
+  "description": "Design, customize, and print 1:1 true-scale Bangladesh vehicle number plates for bikes, scooters, and cars according to BRTA specifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

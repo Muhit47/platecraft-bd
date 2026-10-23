@@ -1,0 +1,32 @@
+*.iml
+.gradle
+.kotlin
+/local.properties
+local.properties
+.env
+debug.keystore
+debug.keystore.base64
+
+# Android Studio / IntelliJ IDEA
+/.idea/
+.idea/
+
+# Build artifacts
+/build
+build/
+app/build/
+.build-outputs/
+*.apk
+*.aab
+/captures
+.externalNativeBuild
+.cxx
+
+# AI Studio internal and temporary assets
+.aistudio/
+public/assets/aistudio/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+

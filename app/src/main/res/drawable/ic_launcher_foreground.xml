@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- License plate shadow -->
+    <path
+        android:fillColor="#33000000"
+        android:pathData="M 23,38 A 4,4 0 0,1 27,34 L 81,34 A 4,4 0 0,1 85,38 L 85,72 A 4,4 0 0,1 81,76 L 27,76 A 4,4 0 0,1 23,72 Z" />
+    
+    <!-- License plate outer frame (White/Silver embossed) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M 24,36 A 4,4 0 0,1 28,32 L 80,32 A 4,4 0 0,1 84,36 L 84,70 A 4,4 0 0,1 80,74 L 28,74 A 4,4 0 0,1 24,70 Z" />
+
+    <!-- Inner plate surface -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M 26,38 A 2,2 0 0,1 28,36 L 80,36 A 2,2 0 0,1 82,38 L 82,68 A 2,2 0 0,1 80,70 L 28,70 A 2,2 0 0,1 26,68 Z" />
+
+    <!-- Plate mounting holes -->
+    <path
+        android:fillColor="#64748B"
+        android:pathData="M 29,40 A 1.5,1.5 0 1,1 29,37 A 1.5,1.5 0 1,1 29,40 M 79,40 A 1.5,1.5 0 1,1 79,37 A 1.5,1.5 0 1,1 79,40" />
+
+    <!-- Bangladesh Green-Red Emblem on left -->
+    <path
+        android:fillColor="#006A4E"
+        android:pathData="M 31,53 A 4.5,4.5 0 1,1 31,44 A 4.5,4.5 0 1,1 31,53" />
+    <path
+        android:fillColor="#F42A41"
+        android:pathData="M 31,50.5 A 2.2,2.2 0 1,1 31,46.5 A 2.2,2.2 0 1,1 31,50.5" />
+
+    <!-- Simulated BRTA Metro text bar (top) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M 40,43 L 74,43 A 1.5,1.5 0 0,1 75.5,44.5 L 75.5,45.5 A 1.5,1.5 0 0,1 74,47 L 40,47 A 1.5,1.5 0 0,1 38.5,45.5 L 38.5,44.5 A 1.5,1.5 0 0,1 40,43 Z" />
+
+    <!-- Plate digits (large embossed numerals - bottom row) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M 31,56 L 37,56 L 37,65 L 31,65 Z M 41,56 L 49,56 L 49,65 L 41,65 Z M 53,56 L 61,56 L 61,65 L 53,65 Z M 65,56 L 77,56 L 77,65 L 65,65 Z" />
+</vector>
