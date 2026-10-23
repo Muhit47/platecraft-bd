@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PlateCraft BD</string>
+    <string name="splash_title">PlateCraft BD</string>
+    <string name="splash_subtitle">বাংলাদেশ ভেহিক্যাল নাম্বার প্লেট স্টুডিও</string>
+    <string name="splash_badge">BRTA STANDARD 2026 • রেট্রো-রিফ্লেক্টিভ স্পেক</string>
+    <string name="splash_status_loading">স্টুডিও লোড হচ্ছে…</string>
+    <string name="splash_status_fonts">BRTA ফন্ট ও জেলা সেটআপ হচ্ছে…</string>
+    <string name="splash_status_ready">স্টুডিও প্রস্তুত!</string>
+    <string name="splash_skip_hint">ট্যাপ করে প্রবেশ করুন</string>
 </resources>

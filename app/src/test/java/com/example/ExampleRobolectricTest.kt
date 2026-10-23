@@ -81,5 +81,14 @@ class ExampleRobolectricTest {
         )
         assertTrue(com.example.engine.PlatePrintEngine.isLandscapeRequired(frontConfig))
     }
+
+    @Test
+    fun `splash screen strings load accurately from resources`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val title = context.getString(R.string.splash_title)
+        val subtitle = context.getString(R.string.splash_subtitle)
+        assertEquals("PlateCraft BD", title)
+        assertEquals("বাংলাদেশ ভেহিক্যাল নাম্বার প্লেট স্টুডিও", subtitle)
+    }
 }
 
