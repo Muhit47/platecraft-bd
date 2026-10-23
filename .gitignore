@@ -4,8 +4,6 @@
 /local.properties
 local.properties
 .env
-debug.keystore
-debug.keystore.base64
 
 # Android Studio / IntelliJ IDEA
 /.idea/
