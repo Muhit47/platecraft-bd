@@ -234,7 +234,7 @@ fun PlateEditorScreen(
                                             color = Color.White
                                         )
                                         Text(
-                                            text = "PlateCraft BD • BRTA Standard",
+                                            text = "PlateCraft BD v${com.example.BuildConfig.VERSION_NAME} • BRTA Standard",
                                             style = MaterialTheme.typography.labelSmall,
                                             color = Color.White.copy(alpha = 0.85f)
                                         )

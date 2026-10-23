@@ -22,11 +22,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PlateCraftTheme {
+                val viewModel: PlateEditorViewModel = viewModel()
                 var isSplashScreenVisible by remember { mutableStateOf(true) }
 
                 Crossfade(
                     targetState = isSplashScreenVisible,
-                    animationSpec = tween(durationMillis = 400),
+                    animationSpec = tween(durationMillis = 350),
                     label = "splash_transition"
                 ) { showSplash ->
                     if (showSplash) {
@@ -34,7 +35,6 @@ class MainActivity : ComponentActivity() {
                             onTimeoutOrSkip = { isSplashScreenVisible = false }
                         )
                     } else {
-                        val viewModel: PlateEditorViewModel = viewModel()
                         PlateEditorScreen(viewModel = viewModel)
                     }
                 }

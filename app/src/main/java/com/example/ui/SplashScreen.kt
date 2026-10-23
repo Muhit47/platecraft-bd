@@ -196,47 +196,20 @@ fun SplashScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Logo Badge Container
-            Box(
-                contentAlignment = Alignment.Center,
+            // Logo: Pure logo emblem with zero black borders
+            Image(
+                painter = painterResource(id = R.drawable.ic_launcher_foreground_asset),
+                contentDescription = stringResource(id = R.string.app_name),
                 modifier = Modifier
+                    .size(136.dp)
                     .scale(logoScale.value)
                     .shadow(
-                        elevation = 18.dp,
-                        shape = RoundedCornerShape(28.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(30.dp),
                         spotColor = Color(0xFF00E676)
                     )
-                    .clip(RoundedCornerShape(28.dp))
-                    .background(
-                        Brush.linearGradient(
-                            listOf(
-                                Color(0xFF0B513E),
-                                Color(0xFF042B23),
-                                Color(0xFF063B2F)
-                            )
-                        )
-                    )
-                    .border(
-                        width = 2.dp,
-                        brush = Brush.linearGradient(
-                            listOf(
-                                Color(0xFFFFD54F),
-                                Color(0xFF81C784),
-                                Color(0xFFC8A96A)
-                            )
-                        ),
-                        shape = RoundedCornerShape(28.dp)
-                    )
-                    .padding(14.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground_asset),
-                    contentDescription = stringResource(id = R.string.app_name),
-                    modifier = Modifier
-                        .size(120.dp)
-                        .clip(RoundedCornerShape(18.dp))
-                )
-            }
+                    .clip(RoundedCornerShape(30.dp))
+            )
 
             Spacer(modifier = Modifier.height(28.dp))
 
@@ -263,29 +236,48 @@ fun SplashScreen(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            // BRTA Standard Pill
-            Surface(
-                color = Color(0xFFC8A96A).copy(alpha = 0.15f),
-                shape = RoundedCornerShape(14.dp),
-                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFC8A96A).copy(alpha = 0.45f)),
-                modifier = Modifier.scale(contentAlpha.value)
+            // BRTA Standard & Dynamic App Version Badges
+            Row(
+                modifier = Modifier.scale(contentAlpha.value),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(
-                    text = stringResource(id = R.string.splash_badge),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = Color(0xFFFFE082),
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp)
-                )
+                Surface(
+                    color = Color(0xFFC8A96A).copy(alpha = 0.15f),
+                    shape = RoundedCornerShape(14.dp),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFC8A96A).copy(alpha = 0.45f))
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.splash_badge),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color(0xFFFFE082),
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp)
+                    )
+                }
+
+                Surface(
+                    color = Color.White.copy(alpha = 0.10f),
+                    shape = RoundedCornerShape(14.dp),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.25f))
+                ) {
+                    Text(
+                        text = "v${com.example.BuildConfig.VERSION_NAME}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color(0xFFE8F3EF),
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+                    )
+                }
             }
         }
 
-        // Bottom Progress and Enter Affordance
+        // Bottom Progress (Button 2 removed)
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .navigationBarsPadding()
-                .padding(bottom = 32.dp, start = 36.dp, end = 36.dp)
+                .padding(bottom = 36.dp, start = 36.dp, end = 36.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -313,41 +305,25 @@ fun SplashScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
             // Current loading status label
             Text(
                 text = currentStatus,
                 style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFFE8F3EF).copy(alpha = 0.8f),
+                color = Color(0xFFE8F3EF).copy(alpha = 0.85f),
                 fontSize = 12.sp
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Tap to Skip / Enter button
-            Row(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(16.dp))
-                    .clickable(onClick = onTimeoutOrSkip)
-                    .background(Color(0xFF03221A).copy(alpha = 0.5f))
-                    .border(1.dp, Color.White.copy(alpha = 0.2f), RoundedCornerShape(16.dp))
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(id = R.string.splash_skip_hint),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Color.White.copy(alpha = 0.9f)
-                )
-                Spacer(modifier = Modifier.width(6.dp))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = null,
-                    tint = Color(0xFFFFD54F),
-                    modifier = Modifier.size(14.dp)
-                )
-            }
+            // Dynamic Version Label
+            Text(
+                text = "সংস্করণ ${com.example.BuildConfig.VERSION_NAME}",
+                style = MaterialTheme.typography.labelSmall,
+                color = Color.White.copy(alpha = 0.45f),
+                fontSize = 11.sp
+            )
         }
     }
 }
