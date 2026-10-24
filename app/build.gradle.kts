@@ -11,12 +11,12 @@ plugins {
 
 android {
   namespace = "com.example"
-  compileSdk { version = release(36) { minorApiLevel = 1 } }
+  compileSdk = 35
 
   defaultConfig {
     applicationId = "com.aistudio.platecraftbd.kxmpzq"
     minSdk = 24
-    targetSdk = 36
+    targetSdk = 35
     versionCode = 5
     versionName = "1.1.3"
 
@@ -58,6 +58,8 @@ android {
       storePassword = "android"
       keyAlias = "androiddebugkey"
       keyPassword = "android"
+      enableV1Signing = true
+      enableV2Signing = true
     }
   }
 
