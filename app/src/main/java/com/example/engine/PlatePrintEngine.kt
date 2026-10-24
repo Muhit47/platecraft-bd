@@ -486,20 +486,21 @@ object PlatePrintEngine {
                 emblemCenterX + holoWidth / 2f,
                 emblemCenterY + emblemRadius + 3f + holoHeight
             )
-            if (holoRect.bottom < rect.bottom - 4f) {
-                paint.color = AndroidColor.rgb(56, 189, 248) // Holographic Cyan
-                paint.style = Paint.Style.STROKE
-                paint.strokeWidth = 1f
-                canvas.drawRoundRect(holoRect, 2f, 2f, paint)
-
-                paint.style = Paint.Style.FILL
-                paint.textSize = (holoHeight * 0.6f).coerceAtLeast(4f)
-                paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-                paint.textAlign = Paint.Align.CENTER
-                paint.color = AndroidColor.rgb(14, 165, 233)
-                // Generic hologram marker
-                canvas.drawRect(holoRect.left + 2f, holoRect.top + 2f, holoRect.right - 2f, holoRect.bottom - 2f, paint)
-            }
+            // Digital Hologram representation disabled by user request
+            // if (holoRect.bottom < rect.bottom - 4f) {
+            //     paint.color = AndroidColor.rgb(56, 189, 248) // Holographic Cyan
+            //     paint.style = Paint.Style.STROKE
+            //     paint.strokeWidth = 1f
+            //     canvas.drawRoundRect(holoRect, 2f, 2f, paint)
+            //
+            //     paint.style = Paint.Style.FILL
+            //     paint.textSize = (holoHeight * 0.6f).coerceAtLeast(4f)
+            //     paint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            //     paint.textAlign = Paint.Align.CENTER
+            //     paint.color = AndroidColor.rgb(14, 165, 233)
+            //     // Generic hologram marker
+            //     canvas.drawRect(holoRect.left + 2f, holoRect.top + 2f, holoRect.right - 2f, holoRect.bottom - 2f, paint)
+            // }
         }
 
         return emblemCenterX + emblemRadius + (rect.width() * 0.03f)
