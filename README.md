@@ -17,28 +17,33 @@
 <div align="center">
   <table>
     <tr>
-      <th align="center">🎨 Studio Editor Canvas</th>
-      <th align="center">🚀 Brand Opening Experience</th>
+      <th align="center">🚀 Brand Splash Screen</th>
+      <th align="center">🎨 Studio Editor (Standard)</th>
+      <th align="center">🖤 Stealth Dark Theme</th>
+      <th align="center">🖨️ 1:1 Scale Print Studio</th>
     </tr>
     <tr>
       <td align="center">
-        <img src="docs/screenshots/studio_editor.png" width="340" alt="PlateCraft BD Studio Editor" />
+        <img src="docs/screenshots/splash_screen.png" width="220" alt="PlateCraft BD Splash Screen" />
       </td>
       <td align="center">
-        <img src="docs/screenshots/splash_screen.png" width="340" alt="PlateCraft BD Splash Screen" />
+        <img src="docs/screenshots/studio_editor_white.png" width="220" alt="PlateCraft BD Studio Editor White" />
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/studio_editor_dark.png" width="220" alt="PlateCraft BD Studio Editor Stealth" />
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/print_dialog.png" width="220" alt="PlateCraft BD Print Dialog" />
       </td>
     </tr>
   </table>
 </div>
 
-### 🚘 1:1 True-Scale Physical Plate Renders
+### 🚘 1:1 Physical Scale Exported Plate Output
 
 <div align="center">
-  <p><b>Standard Private Car Plate (300 × 152 mm / 520 × 110 mm)</b></p>
-  <img src="docs/screenshots/car_plate_preview.png" width="650" alt="Bangladesh Private Car Number Plate Preview" />
-  <br/><br/>
-  <p><b>Motorcycle High-Legibility Stacked Plate (200 × 100 mm / 205 × 152 mm)</b></p>
-  <img src="docs/screenshots/bike_plate_preview.png" width="420" alt="Bangladesh Bike Rear Number Plate Preview" />
+  <p><b>Motorcycle Front Plate (285 × 50 mm / 1:1 Physical Scale Authentic Render)</b></p>
+  <img src="docs/screenshots/plate_export_sample.png" width="750" alt="Bangladesh Vehicle Number Plate Export Output" />
 </div>
 
 ---
