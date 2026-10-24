@@ -51,6 +51,7 @@ jobs:
       - name: Prepare Release APK
         run: |
           mkdir -p release_apks
+          jarsigner -keystore debug.keystore -storepass android -keypass android app/build/outputs/apk/debug/app-debug.apk androiddebugkey
           cp app/build/outputs/apk/debug/app-debug.apk release_apks/PlateCraft-BD-v1.1.3.apk
 
       - name: Upload APK Artifact
