@@ -1,7 +1,7 @@
 # PlateCraft BD 🇧🇩
 ### Bangladesh Vehicle Number Plate Designer & 1:1 True-Scale A4 Printing Studio
 
-[![Version](https://img.shields.io/badge/Version-1.1.1-brightgreen.svg)](https://github.com/)
+[![Version](https://img.shields.io/badge/Version-1.1.4-brightgreen.svg)](https://github.com/)
 [![Android](https://img.shields.io/badge/Platform-Android-3DDC84.svg?style=flat&logo=android)](https://www.android.com/)
 [![Kotlin](https://img.shields.io/badge/Language-Kotlin-7F52FF.svg?style=flat&logo=kotlin)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-4285F4.svg?style=flat&logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
@@ -11,7 +11,38 @@
 
 ---
 
-## ✨ Features (v1.1.0)
+## 📱 App Showcase & Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <th align="center">🎨 Studio Editor Canvas</th>
+      <th align="center">🚀 Brand Opening Experience</th>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/studio_editor.png" width="340" alt="PlateCraft BD Studio Editor" />
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/splash_screen.png" width="340" alt="PlateCraft BD Splash Screen" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+### 🚘 1:1 True-Scale Physical Plate Renders
+
+<div align="center">
+  <p><b>Standard Private Car Plate (300 × 152 mm / 520 × 110 mm)</b></p>
+  <img src="docs/screenshots/car_plate_preview.png" width="650" alt="Bangladesh Private Car Number Plate Preview" />
+  <br/><br/>
+  <p><b>Motorcycle High-Legibility Stacked Plate (200 × 100 mm / 205 × 152 mm)</b></p>
+  <img src="docs/screenshots/bike_plate_preview.png" width="420" alt="Bangladesh Bike Rear Number Plate Preview" />
+</div>
+
+---
+
+## ✨ Features (v1.1.4)
 
 - **🇧🇩 100% BRTA Standard Compliant**:
   - Full support for all 64 districts & metro zones (*Dhaka Metro, Chattogram Metro, Sylhet Metro, Rajshahi Metro, Khulna Metro, Barishal Metro, Gazipur Metro, Rangpur Metro, etc.*).
