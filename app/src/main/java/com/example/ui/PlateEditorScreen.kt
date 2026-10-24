@@ -402,7 +402,7 @@ fun PlateEditorScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             val icon = when (type) {
-                                PlateType.BIKE_FRONT -> Icons.Default.DirectionsBike
+                                PlateType.BIKE_FRONT -> Icons.Default.TwoWheeler
                                 PlateType.BIKE_REAR -> Icons.Default.TwoWheeler
                                 PlateType.SCOOTER -> Icons.Default.TwoWheeler
                                 PlateType.PRIVATE_CAR -> Icons.Default.DirectionsCar
