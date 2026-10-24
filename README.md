@@ -39,11 +39,39 @@
   </table>
 </div>
 
-### 🚘 1:1 Physical Scale Exported Plate Output
+### 🚘 1:1 Physical Scale Exported Plate Outputs
 
 <div align="center">
-  <p><b>Motorcycle Front Plate (285 × 50 mm / 1:1 Physical Scale Authentic Render)</b></p>
-  <img src="docs/screenshots/plate_export_sample.png" width="750" alt="Bangladesh Vehicle Number Plate Export Output" />
+  <p><b>🏍️ Motorcycle Front Plate (285 × 50 mm — Single-Line Bar)</b></p>
+  <img src="docs/screenshots/plate_bike_front.png" width="800" alt="Motorcycle Front Number Plate" />
+  <br/><br/>
+
+  <table>
+    <tr>
+      <th align="center">🏍️ Motorcycle Rear Plate (200 × 100 mm)</th>
+      <th align="center">🚗 Private Car Standard Plate (300 × 152 mm)</th>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/plate_bike_rear.png" width="380" alt="Motorcycle Rear Stacked Number Plate" />
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/plate_car_standard.png" width="380" alt="Private Car Number Plate" />
+      </td>
+    </tr>
+    <tr>
+      <th align="center">🚙 SUV / Commercial Square Plate</th>
+      <th align="center">🛺 CNG Auto-Rickshaw Plate (240 × 140 mm)</th>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/plate_suv_square.png" width="380" alt="SUV Commercial Number Plate" />
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/plate_cng_autorickshaw.png" width="380" alt="CNG Auto Rickshaw Number Plate" />
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
