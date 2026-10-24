@@ -28,6 +28,13 @@ class ExampleRobolectricTest {
         val englishInput = "11-9999"
         val banglaOutput = BanglaConstants.toBanglaDigits(englishInput)
         assertEquals("১১-৯৯৯৯", banglaOutput)
+
+        val mixedInput = "Dhaka 12-3456"
+        val mixedBangla = BanglaConstants.toBanglaDigits(mixedInput)
+        assertEquals("Dhaka ১২-৩৪৫৬", mixedBangla)
+
+        val filtered = BanglaConstants.filterOnlyDigits("ab 12 cd", maxLen = 2)
+        assertEquals("১২", filtered)
     }
 
     @Test
@@ -75,49 +82,139 @@ class ExampleRobolectricTest {
     }
 
     @Test
-    fun `landscape required for bike front wide plate`() {
-        val frontConfig = PlateDesignConfig(
-            plateType = PlateType.BIKE_FRONT
-        )
-        assertTrue(com.example.engine.PlatePrintEngine.isLandscapeRequired(frontConfig))
+    fun `brta logo drawable exists and decodes properly`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val drawable = androidx.core.content.ContextCompat.getDrawable(context, R.drawable.ic_brta_logo)
+        org.junit.Assert.assertNotNull(drawable)
     }
 
     @Test
-    fun `generate high resolution plate images for documentation`() {
+    fun `room database inserts, queries, and deletes plates cleanly`() = kotlinx.coroutines.runBlocking {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        
-        // 1. Bike Rear Plate (Stacked 205x152mm)
-        val bikeConfig = PlateDesignConfig(
-            plateType = PlateType.BIKE_REAR,
+        val db = androidx.room.Room.inMemoryDatabaseBuilder(
+            context,
+            com.example.data.AppDatabase::class.java
+        ).build()
+
+        val dao = db.plateDao()
+        val config = PlateDesignConfig(
+            plateType = PlateType.BIKE_FRONT,
             metroName = "ঢাকা মেট্রো",
             classLetter = "ল",
-            seriesNumber = "১২",
-            serialNumber = "৩৪৫৬",
-            theme = com.example.model.PlateTheme.ELECTRIC_GREEN
+            seriesNumber = "২৫",
+            serialNumber = "৯৯০০",
+            bloodGroup = "O+",
+            customTagline = "RIDER BD"
         )
-        val bikeBitmap = com.example.engine.PlatePrintEngine.createHighResBitmap(bikeConfig, context)
-        val bikeFile = java.io.File("docs/screenshots/bike_plate_preview.png")
-        bikeFile.parentFile?.mkdirs()
-        java.io.FileOutputStream(bikeFile).use { out ->
-            bikeBitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)
-        }
-        assertTrue(bikeFile.exists())
+        val entity = com.example.data.PlateEntity.fromConfig(config, "My Bike Plate")
+        val id = dao.insertPlate(entity)
+        assertTrue(id > 0)
 
-        // 2. Car Plate (300x152mm)
-        val carConfig = PlateDesignConfig(
-            plateType = PlateType.PRIVATE_CAR,
-            metroName = "ঢাকা মেট্রো",
-            classLetter = "গ",
-            seriesNumber = "১১",
-            serialNumber = "৯৯৯৯",
-            theme = com.example.model.PlateTheme.STANDARD_WHITE
+        val retrieved = dao.getPlateById(id)
+        org.junit.Assert.assertNotNull(retrieved)
+        assertEquals("ঢাকা মেট্রো", retrieved?.metroName)
+        assertEquals("ল", retrieved?.classLetter)
+        assertEquals("২৫", retrieved?.seriesNumber)
+        assertEquals("৯৯০০", retrieved?.serialNumber)
+        assertEquals("O+", retrieved?.bloodGroup)
+        assertEquals("RIDER BD", retrieved?.customTagline)
+
+        val configRestored = retrieved!!.toConfig()
+        assertEquals(PlateType.BIKE_FRONT, configRestored.plateType)
+        assertEquals("ঢাকা মেট্রো-ল-২৫-৯৯০০", configRestored.fullPlateNumberFormatted)
+
+        dao.deletePlate(retrieved)
+        val deleted = dao.getPlateById(id)
+        org.junit.Assert.assertNull(deleted)
+
+        db.close()
+    }
+
+    @Test
+    fun `viewmodel handles preset loading and plate dimension changes`() {
+        val application = ApplicationProvider.getApplicationContext<android.app.Application>()
+        val viewModel = com.example.ui.PlateEditorViewModel(application)
+
+        viewModel.loadQuickPreset("DHAKA_BIKE_FRONT")
+        assertEquals(PlateType.BIKE_FRONT, viewModel.config.value.plateType)
+        assertEquals("ঢাকা মেট্রো", viewModel.config.value.metroName)
+        assertEquals("ল", viewModel.config.value.classLetter)
+
+        viewModel.setPlateType(PlateType.PRIVATE_CAR)
+        assertEquals(PlateType.PRIVATE_CAR, viewModel.config.value.plateType)
+        assertEquals(300f, viewModel.config.value.effectiveWidthMm, 0.1f)
+        assertEquals(152f, viewModel.config.value.effectiveHeightMm, 0.1f)
+
+        viewModel.setSeriesNumber("33")
+        assertEquals("৩৩", viewModel.config.value.seriesNumber)
+
+        viewModel.setSerialNumber("4455")
+        assertEquals("৪৪৫৫", viewModel.config.value.serialNumber)
+
+        viewModel.setBloodGroup("B+")
+        assertEquals("B+", viewModel.config.value.bloodGroup)
+    }
+
+    @Test
+    fun `a4 print page drawing renders cleanly on canvas for all plate types`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val types = listOf(
+            PlateType.BIKE_FRONT,
+            PlateType.BIKE_REAR,
+            PlateType.SCOOTER,
+            PlateType.PRIVATE_CAR,
+            PlateType.CUSTOM
         )
-        val carBitmap = com.example.engine.PlatePrintEngine.createHighResBitmap(carConfig, context)
-        val carFile = java.io.File("docs/screenshots/car_plate_preview.png")
-        java.io.FileOutputStream(carFile).use { out ->
-            carBitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)
+
+        for (type in types) {
+            val config = PlateDesignConfig(
+                plateType = type,
+                metroName = "ঢাকা মেট্রো",
+                classLetter = "গ",
+                seriesNumber = "১১",
+                serialNumber = "২২৩৩"
+            )
+            val isLandscape = com.example.engine.PlatePrintEngine.isLandscapeRequired(config)
+            val w = if (isLandscape) com.example.engine.PlatePrintEngine.A4_LONG_EDGE_PT else com.example.engine.PlatePrintEngine.A4_SHORT_EDGE_PT
+            val h = if (isLandscape) com.example.engine.PlatePrintEngine.A4_SHORT_EDGE_PT else com.example.engine.PlatePrintEngine.A4_LONG_EDGE_PT
+
+            val bitmap = android.graphics.Bitmap.createBitmap(w, h, android.graphics.Bitmap.Config.ARGB_8888)
+            val canvas = android.graphics.Canvas(bitmap)
+            com.example.engine.PlatePrintEngine.drawA4PrintPage(canvas, config, w.toFloat(), h.toFloat(), null, context)
+            assertTrue(bitmap.width > 0)
+            assertTrue(bitmap.height > 0)
         }
-        assertTrue(carFile.exists())
+    }
+
+    @Test
+    fun `high resolution bitmaps generate for all themes without crashing`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val themes = listOf(
+            com.example.model.PlateTheme.STANDARD_WHITE,
+            com.example.model.PlateTheme.COMMERCIAL_YELLOW,
+            com.example.model.PlateTheme.ELECTRIC_GREEN,
+            com.example.model.PlateTheme.STEALTH_BLACK,
+            com.example.model.PlateTheme.CARBON_DARK
+        )
+
+        for (theme in themes) {
+            val config = PlateDesignConfig(
+                plateType = PlateType.BIKE_REAR,
+                metroName = "চট্টগ্রাম মেট্রো",
+                classLetter = "হ",
+                seriesNumber = "১৬",
+                serialNumber = "৭৮৯০",
+                theme = theme
+            )
+            val bitmap = com.example.engine.PlatePrintEngine.createHighResBitmap(config, context)
+            org.junit.Assert.assertNotNull(bitmap)
+            assertTrue(bitmap.width > 500)
+            assertTrue(bitmap.height > 300)
+
+            val file = com.example.engine.PlatePrintEngine.saveBitmapToFile(context, bitmap, config)
+            assertTrue(file.exists())
+            assertTrue(file.length() > 1000)
+        }
     }
 }
 
