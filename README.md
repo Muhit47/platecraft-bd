@@ -1,13 +1,14 @@
 # PlateCraft BD 🇧🇩
 ### Bangladesh Vehicle Number Plate Designer & 1:1 True-Scale A4 Printing Studio
 
-[![Version](https://img.shields.io/badge/Version-1.1.4-brightgreen.svg)](https://github.com/)
-[![Android](https://img.shields.io/badge/Platform-Android-3DDC84.svg?style=flat&logo=android)](https://www.android.com/)
-[![Kotlin](https://img.shields.io/badge/Language-Kotlin-7F52FF.svg?style=flat&logo=kotlin)](https://kotlinlang.org/)
+[![Release](https://img.shields.io/github/v/release/Muhit47/platecraft-bd?color=brightgreen&label=Version)](https://github.com/Muhit47/platecraft-bd/releases/latest)
+[![Download APK](https://img.shields.io/badge/Download-APK%20(v1.1.4)-blue.svg?logo=android)](https://github.com/Muhit47/platecraft-bd/releases/download/v1.1.4/PlateCraft-BD-v1.1.4.apk)
+[![Android](https://img.shields.io/badge/Platform-Android%208.0%2B%20(API%2024--35)-3DDC84.svg?style=flat&logo=android)](https://www.android.com/)
+[![Kotlin](https://img.shields.io/badge/Language-Kotlin%202.2-7F52FF.svg?style=flat&logo=kotlin)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-4285F4.svg?style=flat&logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**PlateCraft BD** is a modern, professional Android application built with **Jetpack Compose** and **Material 3** for designing, generating, and printing 1:1 physical-scale Bangladesh vehicle number plates following official **Bangladesh Road Transport Authority (BRTA)** specifications.
+**PlateCraft BD** is a modern, high-precision Android application built with **Jetpack Compose** and **Material 3** for designing, previewing, and printing 1:1 physical-scale Bangladesh vehicle number plates strictly following official **Bangladesh Road Transport Authority (BRTA)** specifications.
 
 ---
 
@@ -42,7 +43,16 @@
 
 ---
 
-## ✨ Features (v1.1.4)
+## 🌟 What's New in v1.1.4
+
+- ⚡ **Official Clean Package Namespace**: Transitioned to official app package `com.muhit.platecraftbd` eliminating all legacy installation and update conflicts.
+- 🛡️ **Stable Android 15 Target**: Upgraded to stable **Target SDK 35** and **Compile SDK 35** ensuring broad compatibility across HyperOS, One UI, OxygenOS, ColorOS, and stock Android.
+- 🔐 **Dual-Scheme APK Signing**: Full support for **V1 (JAR Signature)** and **V2 (Full APK Signature)** schemes for seamless side-loading.
+- 🔄 **Continuous CI/CD Release Pipeline**: Automated GitHub Actions workflow with embedded persistent keystore validation for reliable release generation.
+
+---
+
+## ✨ Features
 
 - **🇧🇩 100% BRTA Standard Compliant**:
   - Full support for all 64 districts & metro zones (*Dhaka Metro, Chattogram Metro, Sylhet Metro, Rajshahi Metro, Khulna Metro, Barishal Metro, Gazipur Metro, Rangpur Metro, etc.*).
@@ -52,7 +62,7 @@
 
 - **🌟 Custom Automotive Brand Identity & Opening Experience**:
   - Official Deep Emerald (`#042B23`) emblem branding and adaptive launcher icon.
-  - Seamless, polished launch splash screen with smooth transition into the studio canvas (eliminating initial black screen).
+  - Seamless, polished launch splash screen with smooth transition into the studio canvas.
 
 - **📐 1:1 True-Scale Physical Printing Engine**:
   - **Bike Front Plate**: 285 mm × 45 mm (Standard single-line front bar)
@@ -89,12 +99,12 @@
 ### Prerequisites
 - **Android Studio Ladybug (2024.2.1)** or newer
 - **JDK 17** or newer
-- **Android SDK Platform 34** (Target SDK: 34, Min SDK: 24)
+- **Android SDK Platform 35** (Target SDK: 35, Min SDK: 24)
 
 ### Clone & Build
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/platecraft-bd.git
+git clone https://github.com/Muhit47/platecraft-bd.git
 
 # Navigate to project folder
 cd platecraft-bd
